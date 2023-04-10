@@ -15,8 +15,8 @@ function displayTasks() {
   contentElement.innerHTML = "";
   // let tasks = JSON.parse(localStorage.getItem(currentUser));
 
-  for (let i = 0; i < tasks.length; i++) {
-    const taskElement = createTaskElement(tasks[i]);
+  for (let task in tasks) {
+    const taskElement = createTaskElement(tasks[task]);
     contentElement.appendChild(taskElement);
   }
 }
@@ -24,12 +24,25 @@ function displayTasks() {
 function createTaskElement(task) {
   const articleElement = document.createElement("article");
 
-  const taskNameElement = document.createElement("div");
-  articleElement.appendChild(taskNameElement);
+  const infoElement = document.createElement("div");
+  infoElement.classList.add("info-element");
+  articleElement.appendChild(infoElement);
 
   const titleElement = document.createElement("p");
   titleElement.innerText = task.title;
-  taskNameElement.appendChild(titleElement);
+  infoElement.appendChild(titleElement);
+
+  const buttonsElement = document.createElement("div");
+  buttonsElement.classList.add("task-buttons");
+  articleElement.appendChild(buttonsElement);
+
+  const checkmarkButtonElement = document.createElement("button");
+  checkmarkButtonElement.addEventListener("click", () => {});
+  buttonsElement.appendChild(checkmarkButtonElement);
+
+  const removeButtomElement = document.createElement("button");
+  removeButtomElement.addEventListener("click", () => {});
+  buttonsElement.appendChild(removeButtomElement);
 
   return articleElement;
 }
