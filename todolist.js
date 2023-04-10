@@ -5,11 +5,17 @@ let currentUser = "Arne";
 let tasks = [];
 
 const task1 = {
-  title: "taskname",
+  title: "task 1",
+  isCompleted: false,
+};
+
+const task2 = {
+  title: "task 2",
   isCompleted: false,
 };
 
 tasks.push(task1);
+tasks.push(task2);
 
 function displayTasks() {
   contentElement.innerHTML = "";
@@ -32,17 +38,29 @@ function createTaskElement(task) {
   titleElement.innerText = task.title;
   infoElement.appendChild(titleElement);
 
-  const buttonsElement = document.createElement("div");
-  buttonsElement.classList.add("task-buttons");
-  articleElement.appendChild(buttonsElement);
-
   const checkmarkButtonElement = document.createElement("button");
-  checkmarkButtonElement.addEventListener("click", () => {});
-  buttonsElement.appendChild(checkmarkButtonElement);
+  checkmarkButtonElement.classList.add("checkButton");
+  checkmarkButtonElement.addEventListener("click", () => {
+    task.isCompleted = !task.isCompleted;
+    displayTasks();
+  });
+  checkmarkButtonElement.style.backgroundColor = task.isCompleted
+    ? "rgb(88, 191, 116)"
+    : "none";
+  articleElement.appendChild(checkmarkButtonElement);
 
-  const removeButtomElement = document.createElement("button");
-  removeButtomElement.addEventListener("click", () => {});
-  buttonsElement.appendChild(removeButtomElement);
+  const removeButtomElement = document.createElement("div");
+  removeButtomElement.classList.add("removeButton");
+  removeButtomElement.innerHTML = "&times;";
+  removeButtomElement.addEventListener("click", () => {
+    articleElement.style.animation = "removeButtonAnimation 0.5s";
+
+    setTimeout(() => {
+      tasks.splice(task, 1);
+      displayTasks();
+    }, 501);
+  });
+  articleElement.appendChild(removeButtomElement);
 
   return articleElement;
 }

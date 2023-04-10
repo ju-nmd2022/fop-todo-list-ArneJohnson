@@ -1,7 +1,7 @@
 html,
 body {
   margin: 0;
-  font-family: "Verdana, Geneva, Tahoma, sans-serif";
+  font-family: "Helvetica";
   height: 100%;
 }
 
@@ -48,14 +48,34 @@ article {
   width: 70%;
 }
 
-.task-buttons {
-  width: 30%;
-}
-
-.task-buttons > button {
+.checkButton {
   height: 50px;
   width: 50px;
   border-radius: 25px;
   border: solid 1px black;
   margin: 10px;
+}
+
+.removeButton {
+  height: 50px;
+  width: 50px;
+  margin: 10px;
+  font-size: 3rem;
+  text-align: center;
+  color: rgb(245, 230, 230);
+  transition: color 0.1s;
+}
+
+.removeButton:hover {
+  cursor: pointer;
+  color: rgb(245, 44, 44);
+}
+
+@keyframes removeButtonAnimation {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(-70vw);
+  }
 }
