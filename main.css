@@ -52,7 +52,7 @@ article > div {
   width: 80%;
 }
 
-.taskButtons {
+.task-buttons {
   height: 50px;
   width: 50px;
   font-size: 30px;
@@ -60,20 +60,20 @@ article > div {
   text-align: center;
 }
 
-.removeButton {
+.remove-button {
   color: rgb(245, 200, 200);
 }
 
-.removeButton:hover {
+.remove-button:hover {
   cursor: pointer;
   color: rgb(245, 44, 44);
 }
 
-.checkButton {
+.check-button {
   color: rgb(230, 230, 230);
 }
 
-.checkButton:hover {
+.check-button:hover {
   cursor: pointer;
   color: rgb(210, 210, 210);
 }
@@ -86,12 +86,24 @@ article > div {
   color: rgb(120, 245, 120);
 }
 
-@keyframes removeButtonAnimation {
+@keyframes slide-out-animation {
   0% {
     transform: translateX(0px);
   }
+  30% {
+    transform: translateX(5vw);
+  }
   100% {
     transform: translateX(-70vw);
+  }
+}
+
+@keyframes pop-up-animation {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 
@@ -99,7 +111,7 @@ span {
   font-weight: bold;
 }
 
-.defaultButton {
+.default-button {
   background-color: white;
   border: 1px solid black;
   padding: 8px 12px 8px 12px;
@@ -107,11 +119,11 @@ span {
   margin: 10px;
 }
 
-.defaultButton:hover {
+.default-button:hover {
   background-color: rgb(230, 230, 230);
 }
 
-.inputBox {
+.input-box {
   background-color: white;
   border: 1px solid black;
   padding: 8px;
