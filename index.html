@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arne Johnsson Todo list</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="todolist.js" defer></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sarabun:wght@100;400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <img src="ju.jpg" class="logo" />
+      <div id="login"></div>
+    </header>
+    <main class="container">
+      <div class="taskwriter">
+        <input
+          id="taskInput"
+          class="input-box"
+          type="text"
+          placeholder="Task"
+        />
+        <button class="default-button" onClick="addTask()">Add</button>
+      </div>
+      <div class="content" id="content"></div>
+    </main>
+    <p class="signature">Arne Johnsson NMD</p>
+  </body>
+</html>
