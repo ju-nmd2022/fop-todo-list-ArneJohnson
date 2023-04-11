@@ -1,7 +1,8 @@
 html,
 body {
   margin: 0;
-  font-family: "Helvetica";
+  font-family: "Sarabun", sans-serif;
+  font-weight: 400;
   height: 100%;
 }
 
@@ -108,7 +109,7 @@ article > div {
 }
 
 span {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .default-button {
@@ -128,4 +129,13 @@ span {
   border: 1px solid black;
   padding: 8px;
   border-radius: 16px;
+}
+
+.signature {
+  position: fixed;
+  right: 5vw;
+  bottom: 0vh;
+  font-size: 2rem;
+  font-weight: 100;
+  color: rgb(210, 210, 210);
 }
