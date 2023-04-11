@@ -38,37 +38,52 @@ article p {
 article {
   border: solid 1px black;
   border-radius: 50px;
-  padding: 30px;
   margin: 20px;
+  padding: 10px;
   display: flex;
   flex-direction: row;
 }
 
-.info-element {
-  width: 70%;
+article > div {
+  padding: 10px;
 }
 
-.checkButton {
+.info-element {
+  width: 80%;
+}
+
+.taskButtons {
   height: 50px;
   width: 50px;
-  border-radius: 25px;
-  border: solid 1px black;
-  margin: 10px;
+  font-size: 30px;
+  transition: color 0.1s;
+  text-align: center;
 }
 
 .removeButton {
-  height: 50px;
-  width: 50px;
-  margin: 10px;
-  font-size: 3rem;
-  text-align: center;
-  color: rgb(245, 230, 230);
-  transition: color 0.1s;
+  color: rgb(245, 200, 200);
 }
 
 .removeButton:hover {
   cursor: pointer;
   color: rgb(245, 44, 44);
+}
+
+.checkButton {
+  color: rgb(230, 230, 230);
+}
+
+.checkButton:hover {
+  cursor: pointer;
+  color: rgb(210, 210, 210);
+}
+
+.active {
+  color: rgb(120, 220, 120);
+}
+
+.active:hover {
+  color: rgb(120, 245, 120);
 }
 
 @keyframes removeButtonAnimation {
@@ -78,4 +93,27 @@ article {
   100% {
     transform: translateX(-70vw);
   }
+}
+
+span {
+  font-weight: bold;
+}
+
+.defaultButton {
+  background-color: white;
+  border: 1px solid black;
+  padding: 8px;
+  border-radius: 16px;
+  margin: 10px;
+}
+
+.defaultButton:hover {
+  background-color: rgb(230, 230, 230);
+}
+
+.inputBox {
+  background-color: white;
+  border: 1px solid black;
+  padding: 8px;
+  border-radius: 16px;
 }

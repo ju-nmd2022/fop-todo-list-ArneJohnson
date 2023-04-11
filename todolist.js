@@ -1,11 +1,12 @@
 const contentElement = document.getElementById("content");
 const loginElement = document.getElementById("login");
 const taskWriterElement = document.getElementById("taskwriter");
-let currentUser = "Arne";
+let currentUser = undefined;
 let tasks = [];
 
 const task1 = {
-  title: "task 1",
+  title:
+    "testing testing testing testing testing testing testing testing testing testing ",
   isCompleted: false,
 };
 
@@ -38,25 +39,28 @@ function createTaskElement(task) {
   titleElement.innerText = task.title;
   infoElement.appendChild(titleElement);
 
-  const checkmarkButtonElement = document.createElement("button");
-  checkmarkButtonElement.classList.add("checkButton");
+  const checkmarkButtonElement = document.createElement("div");
+  checkmarkButtonElement.classList.add("taskButtons", "checkButton");
+  checkmarkButtonElement.innerHTML = "&#10004;";
   checkmarkButtonElement.addEventListener("click", () => {
     task.isCompleted = !task.isCompleted;
-    displayTasks();
+    checkmarkButtonElement.className = task.isCompleted
+      ? (checkmarkButtonElement.className += " active")
+      : checkmarkButtonElement.className.replace(" active", "");
   });
-  checkmarkButtonElement.style.backgroundColor = task.isCompleted
-    ? "rgb(88, 191, 116)"
-    : "none";
+  checkmarkButtonElement.className = task.isCompleted
+    ? (checkmarkButtonElement.className += " active")
+    : checkmarkButtonElement.className.replace(" active", "");
   articleElement.appendChild(checkmarkButtonElement);
 
   const removeButtomElement = document.createElement("div");
-  removeButtomElement.classList.add("removeButton");
-  removeButtomElement.innerHTML = "&times;";
+  removeButtomElement.classList.add("taskButtons", "removeButton");
+  removeButtomElement.innerHTML = "&#10006;";
   removeButtomElement.addEventListener("click", () => {
     articleElement.style.animation = "removeButtonAnimation 0.5s";
 
     setTimeout(() => {
-      tasks.splice(task, 1);
+      tasks.splice(tasks.indexOf(task), 1);
       displayTasks();
     }, 501);
   });
@@ -65,4 +69,49 @@ function createTaskElement(task) {
   return articleElement;
 }
 
+function checkLogin() {
+  loginElement.innerHTML = "";
+
+  if (currentUser !== undefined) {
+    const loginWelcome = document.createElement("p");
+    loginWelcome.style.display = "inline";
+    loginWelcome.innerText = "Welcome ";
+    const usernameSpan = document.createElement("span");
+    usernameSpan.innerText = currentUser;
+    loginWelcome.appendChild(usernameSpan);
+    loginElement.appendChild(loginWelcome);
+
+    const logoutButton = document.createElement("button");
+    logoutButton.classList.add("defaultButton");
+    logoutButton.innerText = "Logout";
+    logoutButton.addEventListener("click", () => {
+      currentUser = undefined;
+      checkLogin();
+      displayTasks();
+    });
+    loginElement.appendChild(logoutButton);
+
+    return loginElement;
+  }
+
+  const loginInput = document.createElement("input");
+  loginInput.classList.add("inputBox");
+  loginInput.type = "text";
+  loginInput.placeholder = "Username";
+
+  const loginButton = document.createElement("button");
+  loginButton.classList.add("defaultButton");
+  loginButton.innerText = "Login";
+  loginButton.addEventListener("click", () => {
+    currentUser = loginInput.value;
+    checkLogin();
+    displayTasks();
+  });
+  loginElement.appendChild(loginInput);
+  loginElement.appendChild(loginButton);
+
+  return loginElement;
+}
+
+checkLogin();
 displayTasks();
