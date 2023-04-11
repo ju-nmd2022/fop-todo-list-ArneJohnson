@@ -11,15 +11,12 @@
   <body>
     <header>
       <img src="ju.jpg" class="logo" />
-      <div id="login">
-        <input type="text" placeholder="Username" />
-        <button>Login</button>
-      </div>
+      <div id="login"></div>
     </header>
     <main class="container">
-      <div id="taskwriter" class="taskwriter">
-        <input type="text" placeholder="Task" />
-        <button>Add</button>
+      <div class="taskwriter">
+        <input id="taskInput" class="inputBox" type="text" placeholder="Task" />
+        <button class="defaultButton" onClick="addTask()">Add</button>
       </div>
       <div class="content" id="content"></div>
     </main>

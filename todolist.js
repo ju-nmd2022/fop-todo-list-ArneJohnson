@@ -1,30 +1,20 @@
 const contentElement = document.getElementById("content");
 const loginElement = document.getElementById("login");
-const taskWriterElement = document.getElementById("taskwriter");
+const taskWriterInput = document.getElementById("taskInput");
 let currentUser = undefined;
 let tasks = [];
 
-const task1 = {
-  title:
-    "testing testing testing testing testing testing testing testing testing testing ",
-  isCompleted: false,
-};
-
-const task2 = {
-  title: "task 2",
-  isCompleted: false,
-};
-
-tasks.push(task1);
-tasks.push(task2);
-
 function displayTasks() {
   contentElement.innerHTML = "";
-  // let tasks = JSON.parse(localStorage.getItem(currentUser));
+  taskWriterInput.value = "";
 
-  for (let task in tasks) {
-    const taskElement = createTaskElement(tasks[task]);
-    contentElement.appendChild(taskElement);
+  if (currentUser) {
+    tasks = JSON.parse(localStorage.getItem(currentUser));
+
+    for (let task in tasks) {
+      const taskElement = createTaskElement(tasks[task]);
+      contentElement.appendChild(taskElement);
+    }
   }
 }
 
@@ -44,6 +34,7 @@ function createTaskElement(task) {
   checkmarkButtonElement.innerHTML = "&#10004;";
   checkmarkButtonElement.addEventListener("click", () => {
     task.isCompleted = !task.isCompleted;
+    localStorage.setItem(currentUser, JSON.stringify(tasks));
     checkmarkButtonElement.className = task.isCompleted
       ? (checkmarkButtonElement.className += " active")
       : checkmarkButtonElement.className.replace(" active", "");
@@ -61,6 +52,7 @@ function createTaskElement(task) {
 
     setTimeout(() => {
       tasks.splice(tasks.indexOf(task), 1);
+      localStorage.setItem(currentUser, JSON.stringify(tasks));
       displayTasks();
     }, 501);
   });
@@ -103,14 +95,34 @@ function checkLogin() {
   loginButton.classList.add("defaultButton");
   loginButton.innerText = "Login";
   loginButton.addEventListener("click", () => {
-    currentUser = loginInput.value;
-    checkLogin();
-    displayTasks();
+    if (loginInput.value.length > 0) {
+      currentUser = loginInput.value;
+      checkLogin();
+      displayTasks();
+    }
   });
   loginElement.appendChild(loginInput);
   loginElement.appendChild(loginButton);
 
   return loginElement;
+}
+
+function addTask() {
+  if (taskWriterInput.value.length > 0 && currentUser) {
+    let task = {
+      title: taskWriterInput.value,
+      isCompleted: false,
+    };
+
+    if (localStorage.getItem(currentUser) === null) {
+      tasks = [];
+    }
+
+    tasks.unshift(task);
+    localStorage.setItem(currentUser, JSON.stringify(tasks));
+  }
+
+  displayTasks();
 }
 
 checkLogin();
